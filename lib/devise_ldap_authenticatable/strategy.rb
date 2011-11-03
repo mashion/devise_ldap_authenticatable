@@ -14,6 +14,7 @@ module Devise
       # to sign in page.
       def authenticate!
         if resource = mapping.to.authenticate_with_ldap(params[scope])
+          decorate(resource)
           success!(resource)
         else
           fail(:invalid)
